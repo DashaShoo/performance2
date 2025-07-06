@@ -321,15 +321,12 @@ const TABS = {
   // Select dropdown
   const select = document.createElement('select');
   select.className = 'section__select';
-
+  select.value = 'all';
+  
   TABS_KEYS.forEach(key => {
     const option = document.createElement('option');
     option.value = key;
     option.textContent = TABS[key].title;
-    if (key === 'all') {
-      option.selected = true;
-      option.setAttribute('selected', ''); // Добавляем атрибут selected
-    }
     select.appendChild(option);
   });
   
@@ -352,9 +349,6 @@ const TABS = {
     tab.className = 'section__tab' + (key === 'all' ? ' section__tab_active' : '');
     tab.id = `tab_${key}`;
     tab.setAttribute('aria-controls', `panel_${key}`);
-    if (key === 'all') {
-      tab.setAttribute('tabindex', '0'); // Добавляем tabindex для активной вкладки
-    }
     tab.textContent = TABS[key].title;
     
     tab.addEventListener('click', () => {
